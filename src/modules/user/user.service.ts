@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -8,6 +8,7 @@ import { PaginationDto } from 'src/common';
 
 @Injectable()
 export class UserService {
+  private readonly logger = new Logger(UserService.name) // Le da el nombre "UserService"
 
   constructor(
     @InjectRepository(User)
@@ -20,6 +21,7 @@ export class UserService {
   }
 
   async findAll(PaginationDto: PaginationDto) {
+    this.logger.log('service findAll', PaginationDto);
 
     const page = PaginationDto.page ?? 1;
     const limit = PaginationDto.limit ?? 10;
@@ -29,6 +31,7 @@ export class UserService {
       order: { id: 'ASC' },
       skip: (page - 1) * limit,
       take: limit,
+      withDeleted: PaginationDto.withDeleted,
     })
 
     return { data, total, page, limit, totalPages: Math.ceil(total / limit) };
