@@ -5,7 +5,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { PaginationDto } from 'src/common';
 
-@Controller('user')
+@Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) { }
 
@@ -14,7 +14,6 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
 
-  @Get()
   @MessagePattern('find_all_users')
   findAll(@Payload() PaginationDto: PaginationDto) {
     return this.userService.findAll(PaginationDto);

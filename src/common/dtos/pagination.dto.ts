@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import { Type } from "class-transformer";
-import { IsOptional, IsPositive } from "class-validator";
+import { IsBoolean, IsOptional, IsPositive } from "class-validator";
 
 export class PaginationDto {
     @IsPositive()
@@ -12,4 +12,9 @@ export class PaginationDto {
     @IsOptional()
     @Type(() => Number)
     limit?: number = 10;
+
+    @IsOptional()
+    @IsBoolean()
+    @Type(() => Boolean)
+    withDeleted?:boolean = false;
 }
