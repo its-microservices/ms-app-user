@@ -13,13 +13,13 @@ async function bootstrap() {
     {
       transport: Transport.TCP,
       options: {
-        host: envs.GATEWAY_HOST,
-        port: envs.GATEWAY_PORT
+        host: envs.HOST,
+        port: envs.PORT
       }
     }
   );
 
-  logger.log(`Microservicio escuchando desde le puerto: ${envs.GATEWAY_PORT}`);
+  logger.log(`Microservicio escuchando desde le puerto: ${envs.PORT}`);
   await app.listen();
 
 }

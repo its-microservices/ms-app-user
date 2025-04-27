@@ -10,8 +10,8 @@ interface EnvVars {
     DB_USERNAME: string;
     DB_PASSWORD: string;
     DB_DATABASE: string;
-    GATEWAY_HOST: string;
-    GATEWAY_PORT: number;
+    HOST: string;
+    PORT: number;
 }
 
 // Defino el modelo de mis variables de entorno con JOI
@@ -21,8 +21,8 @@ const envsSchema = joi.object({
     DB_USERNAME: joi.string().required(),
     DB_PASSWORD: joi.string().required(),
     DB_DATABASE: joi.string().required(),
-    GATEWAY_HOST: joi.string().required(),
-    GATEWAY_PORT: joi.number().required()
+    HOST: joi.string().required(),
+    PORT: joi.number().required()
 }).unknown(true);
 
 // Valido que las variables definidas en mi archivo `.env` sigan la estructura que defini en JOI
@@ -41,6 +41,6 @@ export const envs = {
     DB_USERNAME: envVars.DB_USERNAME,
     DB_PASSWORD: envVars.DB_PASSWORD,
     DB_DATABASE: envVars.DB_DATABASE,
-    GATEWAY_HOST: envVars.GATEWAY_HOST,
-    GATEWAY_PORT: envVars.GATEWAY_PORT
+    HOST: envVars.HOST,
+    PORT: envVars.PORT
 }
