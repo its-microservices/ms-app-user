@@ -23,7 +23,7 @@ const envsSchema = joi.object({
     DB_DATABASE: joi.string().required(),
     HOST: joi.string().required(),
     PORT: joi.number().required()
-}).unknown(true);
+}).unknown(true).prefs({ convert: true });
 
 // Valido que las variables definidas en mi archivo `.env` sigan la estructura que defini en JOI
 const { error, value } = envsSchema.validate(process.env);
